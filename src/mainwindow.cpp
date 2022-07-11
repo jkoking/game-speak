@@ -24,14 +24,14 @@ Copyright  (c) 2021-2022 Jacob Osborne
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), ui(new Ui::MainWindow),
-          SW(new settingswindow), AW(new Aboutwindow) {
+    : QMainWindow(parent),
+      ui(new Ui::MainWindow),
+      SW(new settingswindow),
+      AW(new Aboutwindow)
+{
     ui->setupUi(this);
-    connect(ui->speakButton, &QPushButton::clicked,
-            this, &MainWindow::Screenshot);
-    connect(SW->SpeakHotkey, &QHotkey::activated,
-            this, &MainWindow::Screenshot);
-
+    connect(ui->speakButton, &QPushButton::clicked, this, &MainWindow::Screenshot);
+    connect(SW->SpeakHotkey, &QHotkey::activated, this, &MainWindow::Screenshot);
     connect(SW->m_speech, &QTextToSpeech::stateChanged, this, &MainWindow::stateChanged);
     connect(ui->pauseButton, &QPushButton::clicked, SW->m_speech, &QTextToSpeech::pause);
     connect(ui->playButton, &QPushButton::clicked, SW->m_speech, &QTextToSpeech::resume);
@@ -42,13 +42,15 @@ MainWindow::MainWindow(QWidget *parent)
     restoreState(settings.value("mainwindow state").toByteArray());
 }
 
-MainWindow::~MainWindow() {
+MainWindow::~MainWindow()
+{
     delete ui;
     delete SW;
     delete AW;
 }
 
-void MainWindow::Screenshot() {
+void MainWindow::Screenshot()
+{
     ui->plainTextEdit->clear();
     QByteArray Timpgeometry = saveGeometry();
     bool usedButton = false;
@@ -66,14 +68,12 @@ void MainWindow::Screenshot() {
         raise();
     }
     restoreGeometry(Timpgeometry);
-
     QLocale qlocale;
     QString qtesslang;
     set_language_native(qlocale.language(), qtesslang);
     QByteArray qba = qtesslang.toLocal8Bit();
     const char *tesslang = qba.data();
     qInfo() << "your language is " << tesslang;
-
     cv::Mat image = ASM::QPixmapToCvMat(Pixmap, true);
     //cv::imshow("test", image);
     auto *api = new tesseract::TessBaseAPI();
@@ -89,7 +89,8 @@ void MainWindow::Screenshot() {
     ui->plainTextEdit->setPlainText(Qtexrout);
 }
 
-void MainWindow::stateChanged(QTextToSpeech::State state) {
+void MainWindow::stateChanged(QTextToSpeech::State state)
+{
     ui->speakButton->setDisabled(state == QTextToSpeech::Speaking);
     ui->settingsButton->setDisabled(state == QTextToSpeech::Speaking);
     ui->aboutButton->setDisabled(state == QTextToSpeech::Speaking);
@@ -98,7 +99,6 @@ void MainWindow::stateChanged(QTextToSpeech::State state) {
     ui->StopButton->setEnabled(state == QTextToSpeech::Speaking || state == QTextToSpeech::Paused);
     ui->pauseButton->setEnabled(state == QTextToSpeech::Speaking);
     ui->playButton->setEnabled(state == QTextToSpeech::Paused);
-
     switch (state) {
         case QTextToSpeech::Ready:
             ui->statusbar->showMessage("Speech stopped...", 2000);
@@ -115,29 +115,33 @@ void MainWindow::stateChanged(QTextToSpeech::State state) {
     }
 }
 
-void MainWindow::on_settingsButton_clicked() const {
+void MainWindow::on_settingsButton_clicked() const
+{
+    SW->load();
     SW->show();
 }
 
-void MainWindow::speak() {
+void MainWindow::speak()
+{
     SW->m_speech->say(ui->plainTextEdit->toPlainText());
 }
 
-void MainWindow::on_aboutButton_clicked() const {
+void MainWindow::on_aboutButton_clicked() const
+{
     AW->show();
 }
 
-void MainWindow::closeEvent(QCloseEvent *event) {
+void MainWindow::closeEvent(QCloseEvent *event)
+{
     QSettings settings(QCoreApplication::applicationName());
     settings.setValue("MainWindow geometry", saveGeometry());
     settings.setValue("MainWindow state", saveState());
     QMainWindow::closeEvent(event);
 }
 
-//The following code for translating QLocale to tesseract was written by patrik08 (https://forum.qt.io/topic/81838/qlocale-request-from-country-language-to-language-name-from-this-country-german-de-become-deutsch/4)
-
 /* int id = (int)QLocale::language()  QString ctess Tesseract dir */
-void MainWindow::set_language_native(int id, QString &ctess) {
+void MainWindow::set_language_native(int id, QString &ctess)
+{
 
     /*  Tesseract has unicode (UTF-8) support, and can recognize more than 100 languages "out of the box".
         download link generator (QString & ctess) */
@@ -255,5 +259,5 @@ void MainWindow::set_language_native(int id, QString &ctess) {
 
     }
 }
-//end of code written by patrik08
+
 #pragma clang diagnostic pop

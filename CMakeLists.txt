@@ -12,9 +12,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
 FetchContent_Declare(
-        qhotkey
-        GIT_REPOSITORY https://github.com/Skycoder42/QHotkey.git
-        GIT_TAG master
+    qhotkey
+    GIT_REPOSITORY https://github.com/Skycoder42/QHotkey.git
+    GIT_TAG master
 )
 
 set(QHOTKEY_EXAMPLES OFF CACHE INTERNAL "")
@@ -32,8 +32,6 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_DEFAULT_MAJOR_VERSION} COMPONENTS Widgets REQUIRED)
 find_package(Qt5TextToSpeech)
 
-find_package (Python COMPONENTS Interpreter Development)
-
 find_package(OpenCV REQUIRED)
 find_package(PkgConfig REQUIRED)
 
@@ -45,30 +43,29 @@ include_directories(${TESSERACT_INCLUDE_DIRS})
 include_directories(${LEPTONICA_INCLUDE_DIRS})
 
 set(PROJECT_SOURCES
-        src/main.cpp
-        src/mainwindow.cpp
-        src/mainwindow.h
-        src/mainwindow.ui
-        src/settingswindow.h
-        src/settingswindow.cpp
-        src/settingswindow.ui
-        src/aboutwindow.cpp
-        src/aboutwindow.h
-        src/aboutwindow.ui
-        include/asmOpenCV.h)
+    src/main.cpp
+    src/mainwindow.cpp
+    src/mainwindow.h
+    src/mainwindow.ui
+    src/settingswindow.h
+    src/settingswindow.cpp
+    src/settingswindow.ui
+    src/aboutwindow.cpp
+    src/aboutwindow.h
+    src/aboutwindow.ui
+    include/asmOpenCV.h)
 
 add_executable(game-speak
-        ${PROJECT_SOURCES})
+    ${PROJECT_SOURCES})
 
 target_link_libraries(game-speak PRIVATE
-        Qt::Widgets
-        Qt::TextToSpeech
-        ${OpenCV_LIBS}
-        ${LEPTONICA_LIBRARIES}
-        ${TESSERACT_LIBRARIES}
-        Python::Python
-        Python::Module
-        QHotkey::QHotkey)
+    Qt::Widgets
+    Qt::TextToSpeech
+    ${OpenCV_LIBS}
+    ${LEPTONICA_LIBRARIES}
+    ${TESSERACT_LIBRARIES}
+    QHotkey::QHotkey
+    )
 
 target_include_directories(game-speak PUBLIC ${qhotkey_SOURCE_DIR}/QHotkey)
 

@@ -24,39 +24,31 @@ Copyright  (c) 2021-2022 Jacob Osborne
 #include <QMessageBox>
 #include <QTextToSpeech>
 
-namespace Ui {
-    class settingswindow;
+namespace Ui
+{
+class settingswindow;
 }
 
-class settingswindow : public QDialog {
+class settingswindow: public QDialog
+{
 Q_OBJECT
 
 public:
     explicit settingswindow(QWidget *parent = nullptr);
-
     ~settingswindow();
-
     QHotkey *SpeakHotkey;
     QTextToSpeech *m_speech;
 
 public slots:
-
     void load();
-
     void save();
 
 private slots:
-
     [[maybe_unused]] void on_buttonBox_accepted();
-
     void on_buttonBox_rejected();
 
 private:
     Ui::settingswindow *ui;
-
-    void hideEvent(QHideEvent *event);;
-
-    void showEvent(QShowEvent *event);
 };
 
 #endif // SETTINGSWINDOW_H

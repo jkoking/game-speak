@@ -22,22 +22,24 @@ Copyright  (c) 2021-2022 Jacob Osborne
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
 
 settingswindow::settingswindow(QWidget *parent)
-        :
-        QDialog(parent),
-        ui(new Ui::settingswindow),
-        SpeakHotkey(new QHotkey(this)),
-        m_speech(new QTextToSpeech(nullptr)) {
+    : QDialog(parent),
+      ui(new Ui::settingswindow),
+      SpeakHotkey(new QHotkey(this)),
+      m_speech(new QTextToSpeech(nullptr))
+{
     ui->setupUi(this);
     load();
 }
 
-settingswindow::~settingswindow() {
+settingswindow::~settingswindow()
+{
     delete ui;
     delete m_speech;
     delete SpeakHotkey;
 }
 
-void settingswindow::save() {
+void settingswindow::save()
+{
     QSettings settings(QCoreApplication::applicationName());
 
     QString newSpeakHotkey = ui->SpeakhotkeyEdit->keySequence().toString();
@@ -51,10 +53,10 @@ void settingswindow::save() {
 
     int newVolume = ui->volume->value();
     settings.setValue("volume", newVolume);
-
 }
 
-void settingswindow::load() {
+void settingswindow::load()
+{
     QSettings settings(QCoreApplication::applicationName());
     int rate = settings.value("rate", 0).toInt();
     m_speech->setRate(rate / 10.0);
@@ -76,32 +78,21 @@ void settingswindow::load() {
     this->SpeakHotkey->setShortcut(ui->SpeakhotkeyEdit->keySequence(), true);
 }
 
-void settingswindow::on_buttonBox_accepted() {
+void settingswindow::on_buttonBox_accepted()
+{
     if (ui->SpeakhotkeyEdit->keySequence().isEmpty()) {
         QMessageBox::warning(this, "no hotky chosen", "no hotky chosen for speak");
         return;
-    } else
-        save();
+    }
+    save();
     hide();
     load();
 }
 
-void settingswindow::on_buttonBox_rejected() {
+void settingswindow::on_buttonBox_rejected()
+{
     load();
     hide();
-
-}
-
-void settingswindow::hideEvent(QHideEvent *event) {
-    QSettings settings(QCoreApplication::applicationName());
-    settings.setValue("settingswindow geometry", saveGeometry());
-    QDialog::hideEvent(event);
-}
-
-void settingswindow::showEvent(QShowEvent *event) {
-    QSettings settings(QCoreApplication::applicationName());
-    restoreGeometry(settings.value("settingswindow geometry").toByteArray());
-    QDialog::showEvent(event);
 }
 
 #pragma clang diagnostic pop
