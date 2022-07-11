@@ -18,245 +18,114 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTabWidget" name="tabWidget">
-     <property name="currentIndex">
-      <number>0</number>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Speech settings</string>
      </property>
-     <widget class="QWidget" name="tabWidgetPage1">
-      <attribute name="title">
-       <string>Text to speech</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QGroupBox" name="groupBox_3">
-         <property name="title">
-          <string>Select a TTS Engine</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
-           <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="radioButtonTtsQspeech">
-              <property name="whatsThis">
-               <string>use OS's default TTS</string>
-              </property>
-              <property name="text">
-               <string>OS default TTS (loca)</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="radioButtonTtsrAmazon">
-              <property name="toolTip">
-               <string>Require's AWS account charge's may apply</string>
-              </property>
-              <property name="whatsThis">
-               <string>Internet connection requited  WARNING  text is sent to Amazon for processing</string>
-              </property>
-              <property name="text">
-               <string>Amazon AWS (cloud)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QRadioButton" name="radioButtonTtsGoogle">
-              <property name="toolTip">
-               <string>Require's Google cloud account charge's may apply</string>
-              </property>
-              <property name="whatsThis">
-               <string>Internet connection requited  WARNING  text is sent to Google for processing</string>
-              </property>
-              <property name="text">
-               <string>Google cloud (cloud)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEditAwsApikey"/>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEditGoogleCloudTtsApiKey"/>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>Speech settings</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
-          <item>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="3" column="1">
-             <widget class="QSlider" name="volume">
-              <property name="maximum">
-               <number>100</number>
-              </property>
-              <property name="singleStep">
-               <number>5</number>
-              </property>
-              <property name="pageStep">
-               <number>20</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label">
-              <property name="whatsThis">
-               <string>Choose a keybinding to activate speak</string>
-              </property>
-              <property name="text">
-               <string>Speak hotkey;</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QKeySequenceEdit" name="SpeakhotkeyEdit">
-              <property name="whatsThis">
-               <string>Choose a keybinding to activate speak</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QSlider" name="pitch">
-              <property name="minimum">
-               <number>-10</number>
-              </property>
-              <property name="maximum">
-               <number>10</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_2">
-              <property name="autoFillBackground">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Pitch</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>Volume</string>
-              </property>
-              <property name="scaledContents">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QSlider" name="rate">
-              <property name="minimum">
-               <number>-10</number>
-              </property>
-              <property name="maximum">
-               <number>10</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_3">
-              <property name="text">
-               <string>Rate</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tabWidgetPage2">
-      <attribute name="title">
-       <string>Image to Text</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>Select a OCR engine</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="2" column="0">
-             <widget class="QRadioButton" name="radioButtonOcrGoogle">
-              <property name="toolTip">
-               <string>Require's Google cloud account charge's may apply</string>
-              </property>
-              <property name="whatsThis">
-               <string>Internet connection requited WARNING image's are sent to Google for processing</string>
-              </property>
-              <property name="text">
-               <string>Google cloud (cloud)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QRadioButton" name="radioButtonOcrAmazon">
-              <property name="tabletTracking">
-               <bool>false</bool>
-              </property>
-              <property name="toolTip">
-               <string>Require's AWS account charge's may apply</string>
-              </property>
-              <property name="whatsThis">
-               <string>Internet connection requited  WARNING image's are sent to Amazon for processing</string>
-              </property>
-              <property name="text">
-               <string>Amazon AWS (cloud)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QRadioButton" name="RadioButtonOcrTesseract">
-              <property name="whatsThis">
-               <string>On device image processing useing the tesseract library</string>
-              </property>
-              <property name="text">
-               <string>Tesseract (local)</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEditAwsOcrApikey"/>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEditGoogleCloudOcrApiKey"/>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="whatsThis">
+           <string>Choose a keybinding to activate speak</string>
+          </property>
+          <property name="text">
+           <string>Speak hotkey:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QKeySequenceEdit" name="SpeakhotkeyEdit">
+          <property name="whatsThis">
+           <string>Choose a keybinding to activate speak</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Pitch:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="pitch">
+          <property name="minimum">
+           <number>-10</number>
+          </property>
+          <property name="maximum">
+           <number>10</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Rate:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="rate">
+          <property name="minimum">
+           <number>-10</number>
+          </property>
+          <property name="maximum">
+           <number>10</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Volume:</string>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="volume">
+          <property name="maximum">
+           <number>100</number>
+          </property>
+          <property name="singleStep">
+           <number>5</number>
+          </property>
+          <property name="pageStep">
+           <number>20</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
